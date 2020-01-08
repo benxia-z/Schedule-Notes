@@ -1,15 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 const BACKEND_URL = "http://localhost:5000"
 
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()}
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    })
+  }
+
+  render() {
+    return(
+      <div className="Clock">
+        <h2>{this.state.date.toLocaleTimeString()}</h2>
+      </div>
+    )
+  }
+}
+
 class App extends React.Component {
-
-  state = { "message": "test",
-            "randint": "0"
-          }
-
+  constructor(props) {
+    super(props);
+    this.state = { "message": "test",
+              "randint": "0"
+            }
+    this.randomNumber = this.randomNumber.bind(this)
+  }
   getMessage() {
     return fetch(`${BACKEND_URL}/hello_world`, {
       method: "GET",
@@ -41,11 +74,11 @@ class App extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload. message is { this.state.message }
           </p>
@@ -54,14 +87,18 @@ class App extends React.Component {
           </p>
           <button
             type="button"
-            onClick={this.randomNumber.bind(this)}
+            onClick={this.randomNumber}
           >
             Random integer
           </button>
         </header>
+        <p>
+          <Clock />
+        </p>
       </div>
     );
   }
 }
+
 
 export default App;
