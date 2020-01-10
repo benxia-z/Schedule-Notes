@@ -1,9 +1,10 @@
 .App {
+  background-color: #282c34;
   text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,4 +23,16 @@
   top: 0px;
   right: 10px;
   color: white;
+}
+
+.Rand-int {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  color: white;
+  font-size: calc(10px + 2vmin);
+}
+
+textarea {
+  margin: auto;
 }

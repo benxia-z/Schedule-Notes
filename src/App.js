@@ -79,9 +79,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload. message is { this.state.message }
-          </p>
+          <Clock />
+        </header>
+        <textarea rows="4" cols="50">
+        </textarea>
+        <div className="Rand-int">
           <p>
             Random integer: { this.state.randint }
           </p>
@@ -91,10 +93,7 @@ class App extends React.Component {
           >
             Random integer
           </button>
-        </header>
-        <p>
-          <Clock />
-        </p>
+        </div>
       </div>
     );
   }
